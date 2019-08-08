@@ -73,5 +73,5 @@ Run `ng e2e` to execute the end-to-end tests.
 
 
 ## Deployment of Live App
-Coming Soon
+App is deployed at https://sleepy-golick-6cb0f5.netlify.com/
 
