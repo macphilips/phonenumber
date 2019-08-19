@@ -67,4 +67,18 @@ describe('PhoneNumberGeneratorComponent', () => {
     expect(phoneNumbers[2] > phoneNumbers[3]).toBeTruthy();
     expect(phoneNumbers[3] > phoneNumbers[4]).toBeTruthy();
   });
+
+  it('should generate paginated phone number ', function () {
+    app.size = 14;
+    app.pageSize = 5;
+    app.page = 1;
+
+    const button = fixture.debugElement.nativeElement.querySelector('.page-heading #generator');
+    button.click();
+
+    expect(app.generatePaginatedPhoneNumberList().length).toEqual(5);
+
+    app.page = 3;
+    expect(app.generatePaginatedPhoneNumberList().length).toEqual(4);
+  });
 });

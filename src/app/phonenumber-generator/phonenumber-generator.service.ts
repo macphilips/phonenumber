@@ -38,6 +38,6 @@ export class PhoneNumberGeneratorService {
       } while (store[num]) ;
       store[num] = 1;
     }
-    return Object.keys(store).sort();
+    return Object.keys(store);
   }
 }
