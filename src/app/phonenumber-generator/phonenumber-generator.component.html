@@ -1,0 +1,37 @@
+<div class="page-heading" style="">
+  <div class="title">
+    <span>Phone Number Generator</span>
+  </div>
+  <div class="flex-container">
+    <div>
+      <input placeholder="Generate Size" (ngModelChange)="hasError= false" style="width: 230px;" class="form-control"
+             name="size" [(ngModel)]="size">
+      <small style="color: red" *ngIf="hasError"> Number should be less than 10000</small>
+    </div>
+    <button (click)="generatePhoneNumbers()" class="button float-right">
+      <span>Generate</span>
+    </button>
+    <button class="button primary" (click)="saveToFile()">
+      Save as txt
+    </button>
+  </div>
+</div>
+<div class="flex-container" style="justify-content: space-between;">
+  <div class="min-max">
+    <span>Min: {{minPhoneNumber}}</span>
+    &nbsp;
+    <span>Max: {{maxPhoneNumber}}</span>
+  </div>
+  <div class="action-bar">
+    <button class="button" (click)="sort()">
+      Sort {{reverse ? 'DESC' : 'ASC'}}
+    </button>
+  </div>
+</div>
+<div class="data-table-container ">
+  <div class="data-table">
+      <span *ngFor="let phoneNumber of phoneNumbers; trackBy: trackByPhoneNumber">
+    {{phoneNumber}}
+  </span>
+  </div>
+</div>
