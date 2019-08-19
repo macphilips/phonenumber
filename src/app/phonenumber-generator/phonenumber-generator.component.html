@@ -8,7 +8,7 @@
              name="size" [(ngModel)]="size">
       <small style="color: red" *ngIf="hasError"> Number should be less than 10000</small>
     </div>
-    <button (click)="generatePhoneNumbers()" class="button float-right">
+    <button id="generator" (click)="generatePhoneNumbers()" class="button float-right">
       <span>Generate</span>
     </button>
     <button class="button primary" (click)="saveToFile()">
@@ -23,15 +23,21 @@
     <span>Max: {{maxPhoneNumber}}</span>
   </div>
   <div class="action-bar">
-    <button class="button" (click)="sort()">
+    <app-page-size-selector (pageSizeChange)="pageSize=$event"
+                            [pageSizeList]="[25, 50, 100, 500]"></app-page-size-selector>
+    <button id="sort" class="button" (click)="sort()">
       Sort {{reverse ? 'DESC' : 'ASC'}}
     </button>
   </div>
 </div>
 <div class="data-table-container ">
   <div class="data-table">
-      <span *ngFor="let phoneNumber of phoneNumbers; trackBy: trackByPhoneNumber">
-    {{phoneNumber}}
-  </span>
+      <span *ngFor="let phoneNumber of generatePaginatedPhoneNumberList(); trackBy: trackByPhoneNumber">
+        {{phoneNumber}}
+      </span>
   </div>
+</div>
+<div class="pagination-container" *ngIf="phoneNumbers.length">
+  <app-pagination [pageSize]="pageSize" [totalItems]="phoneNumbers.length" [(page)]="page" (pageChange)="page = $event"
+                  [btnGroupSize]="5"></app-pagination>
 </div>

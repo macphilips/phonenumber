@@ -1,0 +1,23 @@
+<div class="select-input" #pageSizeSelector>
+  <div class="form-row">
+    <div [attr.data-select]="'pageSize'" class="form-input-group col-8 p-0">
+      <input style="display: none" [(ngModel)]="pageSize"/>
+      <input name="pageSize" #pageSizeInput class="control" (ngModelChange)="updateValue(pageSize);"
+             (click)="toggleSelect(true)" (blur)="toggleSelect(false)" [(ngModel)]="pageSize"/>
+      <div class="icon">
+        <button class="button button-sm" type="button"
+                (click)="toggleSelect(!selectDropdownState.pageSize); !selectDropdownState.pageSize ? pageSizeInput.focus() : ''">
+        <fa-icon [icon]="caretDown" [classes]="'fa-icon'"></fa-icon>
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="select-dropdown" [ngClass]="{'open': selectDropdownState.pageSize}">
+    <ng-container *ngFor="let pageSize_ of pageSizeList; trackBy: trackById">
+      <span [attr.data-value]="pageSize_" (click)="updateValue(pageSize_);" class="item">
+        {{pageSize_}}
+      </span>
+    </ng-container>
+
+  </div>
+</div>

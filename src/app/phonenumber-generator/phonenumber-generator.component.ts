@@ -7,6 +7,7 @@ import { PhoneNumberGeneratorService } from './phonenumber-generator.service';
 })
 export class PhoneNumberGeneratorComponent {
   phoneNumbers: string[] = [];
+  paginatedPhoneNumber: string[] = [];
   maxPhoneNumber: string;
   minPhoneNumber: string;
   size: number;
@@ -15,16 +16,19 @@ export class PhoneNumberGeneratorComponent {
 
   hasError = false;
 
+  pageSize = 25;
+  page = 1;
+
   constructor(private pns: PhoneNumberGeneratorService) {
   }
 
   sort() {
-    this.reverse = !this.reverse;
     if (this.reverse) {
       this.phoneNumbers.reverse();
     } else {
       this.phoneNumbers.sort();
     }
+    this.reverse = !this.reverse;
   }
 
   generatePhoneNumbers() {
@@ -32,10 +36,18 @@ export class PhoneNumberGeneratorComponent {
       this.hasError = true;
       return;
     }
+    this.reverse = false;
+    this.paginatedPhoneNumber = [];
+    this.page = 1;
+
     const phoneNumbers = this.pns.generate(this.size);
     this.phoneNumbers = phoneNumbers;
+
+    this.sort();
+
     this.minPhoneNumber = phoneNumbers[0];
     this.maxPhoneNumber = phoneNumbers[phoneNumbers.length - 1];
+
   }
 
   saveToFile() {
@@ -44,5 +56,13 @@ export class PhoneNumberGeneratorComponent {
 
   trackByPhoneNumber(id, phoneNumber) {
     return phoneNumber;
+  }
+
+  generatePaginatedPhoneNumberList(): string[] {
+    const {length: totalItem} = this.phoneNumbers;
+    const {pageSize, page} = this;
+    const totalPage = totalItem / pageSize;
+    const offset = ((page - 1 ) / totalPage) * totalItem;
+    return this.phoneNumbers.slice(offset, offset + pageSize);
   }
 }

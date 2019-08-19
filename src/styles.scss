@@ -176,3 +176,9 @@ html body {
   height: calc(100vh - 230px);
   overflow-y: scroll;
 }
+
+.pagination-container {
+  display: flex;
+  margin: 1rem;
+  justify-content: flex-end;
+}
