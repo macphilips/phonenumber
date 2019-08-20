@@ -55,7 +55,7 @@ export class PhoneNumberGeneratorComponent {
   saveToFile() {
     const text = this.phoneNumbers.join('\n');
     const blob = new Blob([text], {type: 'text/csv;charset=utf-8'});
-    FileSaver.saveAs(blob, `${this.generateTimestamp}-PhoneNumber.csv`);
+    FileSaver.saveAs(blob, `${this.generateTimestamp || Date.now()}-PhoneNumber.csv`);
   }
 
   trackByPhoneNumber(id, phoneNumber) {
