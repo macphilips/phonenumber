@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { PhoneNumberGeneratorService } from './phonenumber-generator.service';
+import * as FileSaver from 'file-saver';
 
 @Component({
   selector: 'app-phone-generator-view',
@@ -18,6 +19,7 @@ export class PhoneNumberGeneratorComponent {
 
   pageSize = 25;
   page = 1;
+  generateTimestamp: number;
 
   constructor(private pns: PhoneNumberGeneratorService) {
   }
@@ -47,11 +49,13 @@ export class PhoneNumberGeneratorComponent {
 
     this.minPhoneNumber = phoneNumbers[0];
     this.maxPhoneNumber = phoneNumbers[phoneNumbers.length - 1];
-
+    this.generateTimestamp = Date.now();
   }
 
   saveToFile() {
-
+    const text = this.phoneNumbers.join('\n');
+    const blob = new Blob([text], {type: 'text/csv;charset=utf-8'});
+    FileSaver.saveAs(blob, `${this.generateTimestamp}-PhoneNumber.csv`);
   }
 
   trackByPhoneNumber(id, phoneNumber) {

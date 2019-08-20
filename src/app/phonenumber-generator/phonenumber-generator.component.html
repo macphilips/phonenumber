@@ -12,7 +12,7 @@
       <span>Generate</span>
     </button>
     <button class="button primary" (click)="saveToFile()">
-      Save as txt
+      Save as CSV
     </button>
   </div>
 </div>
@@ -26,7 +26,7 @@
     <app-page-size-selector (pageSizeChange)="pageSize=$event"
                             [pageSizeList]="[25, 50, 100, 500]"></app-page-size-selector>
     <button id="sort" class="button" (click)="sort()">
-      Sort {{reverse ? 'DESC' : 'ASC'}}
+      Sorted {{reverse ? 'DESC' : 'ASC'}}
     </button>
   </div>
 </div>
