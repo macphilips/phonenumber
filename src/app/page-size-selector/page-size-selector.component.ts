@@ -28,14 +28,16 @@ export class PageSizeSelectorComponent implements OnInit {
     const timeoutHandler = () => {
       this.selectDropdownState.pageSize = show;
     };
-    setTimeout(timeoutHandler, 100);
-
+    setTimeout(timeoutHandler, 200);
   }
 
   updateValue(pageSize) {
-    const size = parseInt(pageSize, 10);
+    let size = parseInt(pageSize, 10);
     if (Number.isNaN(size)) {
       return;
+    }
+    if (size < 0) {
+      size = 0;
     }
     this.pageSize = size;
     this.pageSizeChange.emit(size);
