@@ -3,7 +3,7 @@
     <div [attr.data-select]="'pageSize'" class="form-input-group col-8 p-0">
       <input style="display: none" [(ngModel)]="pageSize"/>
       <input name="pageSize" #pageSizeInput class="control" (ngModelChange)="updateValue(pageSize);"
-             (click)="toggleSelect(true)" (blur)="toggleSelect(false)" [(ngModel)]="pageSize"/>
+             (click)="toggleSelect(true)" (blur)="updateValue(pageSizeInput.value);toggleSelect(false)" [(ngModel)]="pageSize"/>
       <div class="icon">
         <button class="button button-sm" type="button"
                 (click)="toggleSelect(!selectDropdownState.pageSize); !selectDropdownState.pageSize ? pageSizeInput.focus() : ''">

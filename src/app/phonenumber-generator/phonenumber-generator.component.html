@@ -37,7 +37,7 @@
       </span>
   </div>
 </div>
-<div class="pagination-container" *ngIf="phoneNumbers.length">
+<div class="pagination-container" *ngIf="pageSize && phoneNumbers.length">
   <app-pagination [pageSize]="pageSize" [totalItems]="phoneNumbers.length" [(page)]="page" (pageChange)="page = $event"
                   [btnGroupSize]="5"></app-pagination>
 </div>
