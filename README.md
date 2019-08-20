@@ -3,6 +3,10 @@ A small Angular application that lets a user generate random 10 digits phone num
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.0.
 
+[![Build Status](https://travis-ci.org/macphilips/phonenumber.svg?branch=master)](https://travis-ci.org/macphilips/phonenumber)
+[![Maintainability](https://api.codeclimate.com/v1/badges/f53816169a6c36820f37/maintainability)](https://codeclimate.com/github/macphilips/phonenumber/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/f53816169a6c36820f37/test_coverage)](https://codeclimate.com/github/macphilips/phonenumber/test_coverage)
+
 ## Table of Contents
 * [Technologies](#technologies)
 * [Getting Started](#getting-started)
